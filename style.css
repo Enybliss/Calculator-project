@@ -1,19 +1,22 @@
 body {
-    margin-left: 300px;
-    
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    margin: 0;
 }
 
 .calculator {
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
     padding: 20px;
     background-color: rgb(147, 147, 245);
-    width: 300px;
-}
+    width: 320px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 
 #display {
-    width: 280px;
+    width: 90%;
     height: 40px;
     margin-bottom: 10px;
     font-size: 20px;
@@ -32,18 +35,34 @@ body {
 }
 
 button {
-    padding: 20px;
-    font-size: 18px;
+    padding: 15px;
+    font-size: 20px;
     border-radius: 5px;
     background-color: black;
+    border: none;
     cursor: pointer;
     color: white;
+    font-weight: bold;
+    transition: 0.3s ease-in-out;
 }
 
 .equal {
     grid-column: span 1;
+    background-color: green;
 }
 
 button:hover {
     background-color: orangered;
+}
+
+.equal:hover {
+    background-color: darkgreen;
+}
+
+.clear {
+    background-color: red;
+}
+
+.clear:hover {
+    background-color: darkred;
 }
