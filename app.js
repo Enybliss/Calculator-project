@@ -1,6 +1,5 @@
-// Select the display and all buttons
+// Select the display
 const display = document.getElementById("display");
-const buttons = document.querySelectorAll("button");
 
 // Function to clear display
 function clearDisplay() {
@@ -12,7 +11,7 @@ function deleteLast() {
     display.value = display.value.slice(0, -1);
 }
 
-// Function to append clicked button values to display
+// Function to append values to display
 function appendToDisplay(value) {
     let lastChar = display.value.slice(-1);
 
@@ -57,25 +56,26 @@ function square() {
         display.value = "Error";
         return;
     }
-
     display.value = Math.pow(parseFloat(display.value), 2);
 }
 
-// Event listeners for button clicks
-buttons.forEach(button => {
-    button.addEventListener("click", () => {
-        const value = button.textContent;
+// Remove any existing event listeners (fixing double-click issue)
+document.querySelector(".buttons").replaceWith(document.querySelector(".buttons").cloneNode(true));
 
-        if (value === "=") {
-            calculateResult();
-        } else if (value === "C") {
-            clearDisplay();
-        } else if (value === "←") {
-            deleteLast();
-        } else if (value === "x²") {
-            square();
-        } else {
-            appendToDisplay(value);
-        }
-    });
+// Attach new event listener for buttons
+document.querySelector(".buttons").addEventListener("click", (event) => {
+    const target = event.target;
+    const value = target.textContent;
+
+    if (target.classList.contains("number") || target.classList.contains("operator") || target.classList.contains("decimal")) {
+        appendToDisplay(value);
+    } else if (target.classList.contains("equal")) {
+        calculateResult();
+    } else if (target.classList.contains("clear")) {
+        clearDisplay();
+    } else if (target.classList.contains("delete")) {
+        deleteLast();
+    } else if (target.classList.contains("square")) {
+        square();
+    }
 });
